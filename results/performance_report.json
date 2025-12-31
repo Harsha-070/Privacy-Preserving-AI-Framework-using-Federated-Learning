@@ -1,0 +1,96 @@
+{
+    "timestamp": "2026-01-01T00:37:27.236604",
+    "summary": {
+        "federated_accuracy": 0.7581,
+        "centralized_accuracy": 0.9917,
+        "accuracy_retention": 76.44,
+        "accuracy_gap": 0.2336,
+        "privacy_preserved": true
+    },
+    "federated_model": {
+        "final_accuracy": 0.7581,
+        "final_loss": 0.6959,
+        "total_rounds": 5,
+        "training_time_seconds": 330.09,
+        "best_accuracy": 0.7581,
+        "convergence_round": 5,
+        "privacy": "High (Data stays local)"
+    },
+    "centralized_model": {
+        "final_accuracy": 0.9917,
+        "final_loss": 0.0265,
+        "total_epochs": 5,
+        "training_time_seconds": 105.17,
+        "best_accuracy": 0.9917,
+        "privacy": "None (Data aggregated centrally)"
+    },
+    "communication": {
+        "total_bytes": 50597040,
+        "total_megabytes": 48.25
+    },
+    "configuration": {
+        "data": {
+            "dataset_name": "mnist",
+            "data_path": null,
+            "num_clients": 5,
+            "distribution": "non-iid",
+            "shards_per_client": 2,
+            "dirichlet_alpha": 0.5,
+            "min_samples_per_client": 10,
+            "max_samples_per_client": null,
+            "validation_split": 0.1,
+            "normalize": true,
+            "augmentation": false
+        },
+        "model": {
+            "architecture": "cnn",
+            "input_shape": [
+                28,
+                28,
+                1
+            ],
+            "num_classes": 10,
+            "dropout_rate": 0.5,
+            "use_batch_norm": false,
+            "hidden_units": [
+                128,
+                64
+            ]
+        },
+        "federated": {
+            "num_rounds": 5,
+            "clients_per_round": 5,
+            "local_epochs": 1,
+            "batch_size": 32,
+            "client_learning_rate": 0.01,
+            "server_learning_rate": 1.0,
+            "client_optimizer": "sgd",
+            "server_optimizer": "sgd",
+            "use_tff": false,
+            "aggregation_method": "fedavg",
+            "fedprox_mu": 0.01
+        },
+        "privacy": {
+            "enable_dp": false,
+            "dp_noise_multiplier": 1.0,
+            "dp_l2_norm_clip": 1.0,
+            "dp_delta": 1e-05,
+            "secure_aggregation": false
+        },
+        "training": {
+            "seed": 42,
+            "checkpoint_interval": 10,
+            "early_stopping_patience": 20,
+            "early_stopping_min_delta": 0.001,
+            "verbose": 1
+        },
+        "output": {
+            "results_dir": "results",
+            "save_model": true,
+            "save_checkpoints": true,
+            "save_logs": true,
+            "save_plots": true,
+            "log_level": "INFO"
+        }
+    }
+}

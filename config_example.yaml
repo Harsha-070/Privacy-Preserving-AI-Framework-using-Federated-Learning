@@ -1,0 +1,55 @@
+# Federated Learning Configuration Example
+# Copy this file and modify as needed
+
+data:
+  dataset_name: mnist           # mnist, fashion_mnist, cifar10
+  num_clients: 10               # Total number of clients
+  distribution: non-iid         # iid, non-iid, dirichlet
+  shards_per_client: 2          # For non-iid distribution
+  dirichlet_alpha: 0.5          # For dirichlet distribution (lower = more heterogeneous)
+  min_samples_per_client: 10
+  validation_split: 0.1
+  normalize: true
+  augmentation: false
+
+model:
+  architecture: cnn             # cnn, mlp, resnet_small, cnn_large
+  input_shape: [28, 28, 1]
+  num_classes: 10
+  dropout_rate: 0.5
+  use_batch_norm: false
+  hidden_units: [128, 64]
+
+federated:
+  num_rounds: 20                # Communication rounds
+  clients_per_round: 5          # Clients participating each round
+  local_epochs: 2               # Local training epochs per round
+  batch_size: 32
+  client_learning_rate: 0.01
+  server_learning_rate: 1.0
+  client_optimizer: sgd         # sgd or adam
+  server_optimizer: sgd
+  aggregation_method: fedavg    # fedavg, fedprox
+  fedprox_mu: 0.01              # FedProx proximal coefficient
+
+privacy:
+  enable_dp: false              # Differential Privacy
+  dp_noise_multiplier: 1.0
+  dp_l2_norm_clip: 1.0
+  dp_delta: 0.00001
+  secure_aggregation: false
+
+training:
+  seed: 42
+  checkpoint_interval: 10
+  early_stopping_patience: 20
+  early_stopping_min_delta: 0.001
+  verbose: 1
+
+output:
+  results_dir: results
+  save_model: true
+  save_checkpoints: true
+  save_logs: true
+  save_plots: true
+  log_level: INFO

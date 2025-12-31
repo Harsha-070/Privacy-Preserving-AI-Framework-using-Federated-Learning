@@ -1,0 +1,2 @@
+federated_accuracy,centralized_accuracy,accuracy_retention,accuracy_gap,privacy_preserved
+0.7581,0.9917,76.44,0.2336,True
