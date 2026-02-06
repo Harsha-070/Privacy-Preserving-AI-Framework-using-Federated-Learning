@@ -1,32 +1,32 @@
 {
-    "timestamp": "2026-01-01T00:37:27.236604",
+    "timestamp": "2026-02-06T01:53:28.361469",
     "summary": {
-        "federated_accuracy": 0.7581,
-        "centralized_accuracy": 0.9917,
-        "accuracy_retention": 76.44,
-        "accuracy_gap": 0.2336,
+        "federated_accuracy": 0.4376,
+        "centralized_accuracy": 0.992,
+        "accuracy_retention": 44.11,
+        "accuracy_gap": 0.5544,
         "privacy_preserved": true
     },
     "federated_model": {
-        "final_accuracy": 0.7581,
-        "final_loss": 0.6959,
-        "total_rounds": 5,
-        "training_time_seconds": 330.09,
-        "best_accuracy": 0.7581,
-        "convergence_round": 5,
+        "final_accuracy": 0.4376,
+        "final_loss": 3.2373,
+        "total_rounds": 10,
+        "training_time_seconds": 719.22,
+        "best_accuracy": 0.4423,
+        "convergence_round": 9,
         "privacy": "High (Data stays local)"
     },
     "centralized_model": {
-        "final_accuracy": 0.9917,
-        "final_loss": 0.0265,
-        "total_epochs": 5,
-        "training_time_seconds": 105.17,
-        "best_accuracy": 0.9917,
+        "final_accuracy": 0.992,
+        "final_loss": 0.0266,
+        "total_epochs": 10,
+        "training_time_seconds": 400.73,
+        "best_accuracy": 0.9928,
         "privacy": "None (Data aggregated centrally)"
     },
     "communication": {
-        "total_bytes": 50597040,
-        "total_megabytes": 48.25
+        "total_bytes": 33731360,
+        "total_megabytes": 32.17
     },
     "configuration": {
         "data": {
@@ -58,9 +58,9 @@
             ]
         },
         "federated": {
-            "num_rounds": 5,
-            "clients_per_round": 5,
-            "local_epochs": 1,
+            "num_rounds": 10,
+            "clients_per_round": 1,
+            "local_epochs": 2,
             "batch_size": 32,
             "client_learning_rate": 0.01,
             "server_learning_rate": 1.0,

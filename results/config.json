@@ -28,9 +28,9 @@
         ]
     },
     "federated": {
-        "num_rounds": 5,
+        "num_rounds": 10,
         "clients_per_round": 5,
-        "local_epochs": 1,
+        "local_epochs": 2,
         "batch_size": 32,
         "client_learning_rate": 0.01,
         "server_learning_rate": 1.0,
