@@ -597,7 +597,7 @@ if report:
                     fig_imp = go.Figure()
                     colors = [ACCENT_1 if v > 0 else CENT_COLOR for v in improvements]
                     fig_imp.add_trace(go.Bar(
-                        x=[f'R{i}→R{i+1}' for i in range(1, len(fed_accs))],
+                        x=[f'R{i}->R{i+1}' for i in range(1, len(fed_accs))],
                         y=[v*100 for v in improvements],
                         marker=dict(
                             color=colors,
@@ -1090,31 +1090,57 @@ distribution = st.sidebar.selectbox("Data Distribution", ["non-iid", "iid", "dir
 st.sidebar.markdown("---")
 
 if st.sidebar.button("Run Simulation", type="primary"):
-    with st.spinner("Running Federated Learning Simulation... This may take a while."):
-        env = os.environ.copy()
-        env["TF_ENABLE_ONEDNN_OPTS"] = "0"
+    import sys
 
-        cmd = [
-            "python", "backend/main.py",
-            "--dataset", dataset,
-            "--clients", str(num_clients),
-            "--clients_per_round", str(clients_per_round),
-            "--rounds", str(training_rounds),
-            "--local_epochs", str(local_epochs),
-            "--distribution", distribution
-        ]
+    env = os.environ.copy()
+    env["TF_ENABLE_ONEDNN_OPTS"] = "0"
+    env["PYTHONUNBUFFERED"] = "1"
 
-        process = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, env=env
-        )
-        stdout, stderr = process.communicate()
+    cmd = [
+        sys.executable, "backend/main.py",
+        "--dataset", dataset,
+        "--clients", str(num_clients),
+        "--clients_per_round", str(clients_per_round),
+        "--rounds", str(training_rounds),
+        "--local_epochs", str(local_epochs),
+        "--distribution", distribution
+    ]
 
-        if process.returncode == 0:
-            st.success("Simulation Completed Successfully! Refresh the page to see updated results.")
-            st.text_area("Output", stdout[-3000:] if len(stdout) > 3000 else stdout, height=250)
-        else:
-            st.error("Simulation Failed!")
-            st.code(stderr[-2000:] if len(stderr) > 2000 else stderr)
+    progress_placeholder = st.empty()
+    log_placeholder = st.empty()
+    output_lines = []
+
+    process = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, env=env, bufsize=1
+    )
+
+    for line in process.stdout:
+        line = line.rstrip()
+        if not line:
+            continue
+        output_lines.append(line)
+
+        # Update progress display for key events
+        if "Round " in line and "/" in line:
+            progress_placeholder.info(f"Training: {line}")
+        elif line.startswith("[") and "/6]" in line:
+            progress_placeholder.info(f"Step: {line}")
+        elif "FINAL RESULTS" in line:
+            progress_placeholder.success("Training Complete!")
+
+        # Show last 15 lines of output
+        display_text = "\n".join(output_lines[-15:])
+        log_placeholder.code(display_text, language="text")
+
+    process.wait()
+
+    if process.returncode == 0:
+        st.success("Simulation Completed! Refresh the page to see updated results.")
+        st.balloons()
+    else:
+        st.error(f"Simulation Failed! Exit code: {process.returncode}")
+        st.code("\n".join(output_lines[-30:]), language="text")
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("""

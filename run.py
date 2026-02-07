@@ -60,10 +60,10 @@ def install_dependencies(packages):
         subprocess.check_call([
             sys.executable, '-m', 'pip', 'install', '--quiet', '--upgrade'
         ] + packages)
-        print("✓ Dependencies installed successfully\n")
+        print("[OK] Dependencies installed successfully\n")
         return True
     except Exception as e:
-        print(f"❌ Failed to install dependencies: {e}")
+        print(f"[ERROR] Failed to install dependencies: {e}")
         print("Please run manually: pip install -r requirements.txt\n")
         return False
 
@@ -76,7 +76,7 @@ def get_recommended_config(ram_gb):
             'rounds': 3,
             'local_epochs': 1,
             'batch_size': 32,
-            'description': 'Low RAM (< 4GB) - Minimal config'
+            'description': f'Low RAM ({ram_gb}GB) - Minimal config'
         }
     elif ram_gb < 8:
         return {
@@ -85,16 +85,25 @@ def get_recommended_config(ram_gb):
             'rounds': 5,
             'local_epochs': 2,
             'batch_size': 32,
-            'description': 'Medium RAM (4-8GB) - Standard config'
+            'description': f'Medium RAM ({ram_gb}GB) - Standard config'
         }
-    else:
+    elif ram_gb < 16:
         return {
             'dataset': 'mnist',
             'clients': 5,
             'rounds': 10,
             'local_epochs': 2,
             'batch_size': 64,
-            'description': 'High RAM (> 8GB) - Full config'
+            'description': f'High RAM ({ram_gb}GB) - Full config'
+        }
+    else:
+        return {
+            'dataset': 'mnist',
+            'clients': 10,
+            'rounds': 10,
+            'local_epochs': 2,
+            'batch_size': 64,
+            'description': f'High RAM ({ram_gb}GB) - Full config'
         }
 
 def run_quick_test():
@@ -109,13 +118,13 @@ def run_quick_test():
         b = tf.constant([[5, 6], [7, 8]])
         c = tf.matmul(a, b)
 
-        print(f"  ✓ TensorFlow {tf.__version__} working")
-        print(f"  ✓ NumPy {np.__version__} working")
-        print(f"  ✓ GPU Available: {len(tf.config.list_physical_devices('GPU')) > 0}")
+        print(f"  [OK] TensorFlow {tf.__version__} working")
+        print(f"  [OK] NumPy {np.__version__} working")
+        print(f"  [OK] GPU Available: {len(tf.config.list_physical_devices('GPU')) > 0}")
         print()
         return True
     except Exception as e:
-        print(f"  ❌ Test failed: {e}\n")
+        print(f"  [ERROR] Test failed: {e}\n")
         return False
 
 def run_training(config):
@@ -136,12 +145,12 @@ def run_training(config):
     ]
 
     try:
-        result = subprocess.run(cmd, check=True, text=True, capture_output=True)
-        print(result.stdout)
+        env = os.environ.copy()
+        env['PYTHONUNBUFFERED'] = '1'
+        result = subprocess.run(cmd, check=True, env=env)
         return True
     except subprocess.CalledProcessError as e:
-        print(f"❌ Training failed!")
-        print(f"Error output:\n{e.stderr}")
+        print(f"[ERROR] Training failed! Exit code: {e.returncode}")
         return False
     except KeyboardInterrupt:
         print("\n⚠ Training interrupted by user")
@@ -168,9 +177,9 @@ def main():
     # Check Python version
     py_version = tuple(map(int, platform.python_version_tuple()[:2]))
     if py_version < (3, 8):
-        print(f"❌ Python 3.8+ required. You have {platform.python_version()}")
+        print(f"[ERROR] Python 3.8+ required. You have {platform.python_version()}")
         sys.exit(1)
-    print(f"✓ Python {platform.python_version()}")
+    print(f"[OK] Python {platform.python_version()}")
 
     # Check dependencies
     print("🔍 Checking dependencies...")
@@ -185,7 +194,7 @@ def main():
             print("Please install manually: pip install -r requirements.txt")
             sys.exit(1)
     else:
-        print("✓ All dependencies installed\n")
+        print("[OK] All dependencies installed\n")
 
     # Get system info
     print("💻 Detecting system capabilities...")
@@ -225,17 +234,17 @@ def main():
                 'description': 'Quick Test (2-3 minutes)'
             }
             if run_training(test_config):
-                print("\n✓ Quick test completed successfully!")
+                print("\n[OK] Quick test completed successfully!")
                 print("  You can now run option 2 for full training")
             else:
-                print("\n❌ Quick test failed. Check TROUBLESHOOTING.md")
+                print("\n[ERROR] Quick test failed. Check TROUBLESHOOTING.md")
 
         elif choice == '2':
             if run_training(config):
-                print("\n✓ Training completed successfully!")
+                print("\n[OK] Training completed successfully!")
                 print("  Run option 3 to view results in dashboard")
             else:
-                print("\n❌ Training failed. Try option 1 (Quick Test) first")
+                print("\n[ERROR] Training failed. Try option 1 (Quick Test) first")
 
         elif choice == '3':
             run_dashboard()
@@ -245,7 +254,7 @@ def main():
             sys.exit(0)
 
         else:
-            print("❌ Invalid choice. Please enter 1-4")
+            print("[ERROR] Invalid choice. Please enter 1-4")
 
 if __name__ == '__main__':
     try:
@@ -254,7 +263,7 @@ if __name__ == '__main__':
         print("\n\n👋 Goodbye!\n")
         sys.exit(0)
     except Exception as e:
-        print(f"\n❌ Unexpected error: {e}")
+        print(f"\n[ERROR] Unexpected error: {e}")
         print("\nPlease check TROUBLESHOOTING.md for help")
         import traceback
         traceback.print_exc()

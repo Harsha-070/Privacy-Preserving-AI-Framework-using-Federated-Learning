@@ -1,0 +1,13 @@
+{
+  "federated_accuracy": 0.9197999835014343,
+  "centralized_accuracy": 0.9643999934196472,
+  "retention": 95.3753618599616,
+  "federated_time": 100.76520991325378,
+  "centralized_time": 50.3458297252655,
+  "config": {
+    "dataset": "mnist",
+    "clients": 3,
+    "rounds": 3,
+    "local_epochs": 1
+  }
+}

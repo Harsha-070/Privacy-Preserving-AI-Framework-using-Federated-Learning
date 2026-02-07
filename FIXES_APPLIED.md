@@ -137,7 +137,7 @@ Code worked on development machine but not on client machines
 ## 🚀 How to Use (For You)
 
 ### **Send to Client:**
-1. The entire project folder (as ZIP)
+1. Share the GitHub repository link
 2. Point them to: **`CLIENT_INSTRUCTIONS.md`**
 
 ### **Tell Client:**
@@ -167,7 +167,7 @@ Before sending to client, verify:
 ## 🎯 Client Flow (Recommended)
 
 ```
-1. Client extracts ZIP
+1. Client clones the repository
 2. Double-click START.bat (or run start.sh)
 3. Choose Option 1 (Quick Test)
 4. Wait 3-5 minutes
@@ -264,7 +264,7 @@ else:
 - Clear error messages and solutions
 
 **You Can:**
-- Send ZIP file confidently
+- Share GitHub repo link confidently
 - Point to CLIENT_INSTRUCTIONS.md
 - Know it will work on their machine
 - Easy to debug if issues arise
@@ -280,7 +280,7 @@ Q: "It's not working"
 A: "What error message do you see? Also, what happens if you run: python quick_start.py"
 
 Q: "It takes too long"
-A: "That's fixed! Please extract the new ZIP file and run: python quick_start.py"
+A: "That's fixed! Please pull the latest changes and run: python quick_start.py"
 
 Q: "OpenBLAS error"
 A: "That's fixed in the new version. Please use the latest files and run: python run.py"
@@ -294,4 +294,4 @@ A: "Please install Python from python.org and check 'Add Python to PATH' during 
 
 ---
 
-**All fixes are complete and tested. Ready to send to client! 🚀**
+**All fixes are complete and tested. Ready for client to clone and use! 🚀**

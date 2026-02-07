@@ -353,6 +353,9 @@ class FederatedTrainer:
 
         total_bytes = 0
 
+        # Per-round timeout: 5 minutes max per round as safety net
+        max_round_time = 300
+
         for round_num in range(1, self.num_rounds + 1):
             round_start = time.time()
 
@@ -365,6 +368,7 @@ class FederatedTrainer:
             # Client training
             client_outputs = []
             for client_id in selected_clients:
+                client_start = time.time()
                 output = client_update(
                     model=client_model,
                     dataset=batched_datasets[client_id],
@@ -375,6 +379,11 @@ class FederatedTrainer:
                     fedprox_mu=self.fedprox_mu
                 )
                 client_outputs.append(output)
+
+                # Check if round is taking too long
+                if time.time() - round_start > max_round_time:
+                    logger.warning(f"Round {round_num} exceeded {max_round_time}s timeout, using partial results")
+                    break
 
             # Server aggregation
             self.global_weights, train_loss, train_acc = server_aggregate(
@@ -412,7 +421,7 @@ class FederatedTrainer:
                 print(f"Round {round_num}/{self.num_rounds} - "
                       f"Loss: {test_metrics['loss']:.4f} - "
                       f"Accuracy: {test_metrics['accuracy']:.4f} - "
-                      f"Time: {round_time:.2f}s")
+                      f"Time: {round_time:.2f}s", flush=True)
 
         # Set final weights to global model
         self.global_model.set_weights(self.global_weights)

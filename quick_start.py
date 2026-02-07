@@ -62,7 +62,7 @@ def main():
     train_data, test_data = load_and_preprocess_data(dataset_name)
     x_train, y_train = train_data
     x_test, y_test = test_data
-    logger.info(f"  ✓ Loaded {len(x_train)} training samples in {time.time()-start_time:.1f}s")
+    logger.info(f"  [OK] Loaded {len(x_train)} training samples in {time.time()-start_time:.1f}s")
 
     # Step 2: Create federated datasets
     logger.info(f"[2/5] Creating {num_clients} client datasets...")
@@ -73,7 +73,7 @@ def main():
         distribution='iid',  # IID is faster
         seed=42
     )
-    logger.info(f"  ✓ Created client datasets in {time.time()-start_time:.1f}s")
+    logger.info(f"  [OK] Created client datasets in {time.time()-start_time:.1f}s")
 
     # Step 3: Setup model
     logger.info("[3/5] Creating neural network model...")
@@ -93,7 +93,7 @@ def main():
         )
         return model
 
-    logger.info(f"  ✓ Model architecture: CNN for {input_shape} → {num_classes} classes")
+    logger.info(f"  [OK] Model architecture: CNN for {input_shape} -> {num_classes} classes")
 
     # Step 4: Centralized training (quick baseline)
     logger.info("[4/5] Training centralized baseline...")
@@ -118,8 +118,8 @@ def main():
 
     cent_loss, cent_acc = cent_model.evaluate(x_test, y_test, verbose=0)
     cent_time = time.time() - start_time
-    logger.info(f"  ✓ Centralized training completed in {cent_time:.1f}s")
-    logger.info(f"  ✓ Final accuracy: {cent_acc:.4f}")
+    logger.info(f"  [OK] Centralized training completed in {cent_time:.1f}s")
+    logger.info(f"  [OK] Final accuracy: {cent_acc:.4f}")
 
     # Step 5: Federated training
     logger.info(f"[5/5] Starting federated learning ({num_rounds} rounds)...")
@@ -141,8 +141,8 @@ def main():
     fed_acc = fed_history['test_accuracy'][-1]
     fed_loss = fed_history['test_loss'][-1]
 
-    logger.info(f"  ✓ Federated training completed in {fed_time:.1f}s")
-    logger.info(f"  ✓ Final accuracy: {fed_acc:.4f}")
+    logger.info(f"  [OK] Federated training completed in {fed_time:.1f}s")
+    logger.info(f"  [OK] Final accuracy: {fed_acc:.4f}")
 
     # Save models
     fed_model = trainer.get_global_model()
@@ -156,9 +156,9 @@ def main():
     print(f"  Federated Accuracy:   {fed_acc*100:.2f}%  (trained in {fed_time:.1f}s)")
     print(f"  Centralized Accuracy: {cent_acc*100:.2f}%  (trained in {cent_time:.1f}s)")
     print(f"  Accuracy Retention:   {(fed_acc/cent_acc)*100:.1f}%")
-    print(f"  Privacy Preserved:    ✓ Yes (data stayed on clients)")
+    print(f"  Privacy Preserved:    [OK] Yes (data stayed on clients)")
     print("="*70)
-    print(f"\n✓ Models saved to: {results_dir}/\n")
+    print(f"\n[OK] Models saved to: {results_dir}/\n")
 
     # Create simple report
     report = {
@@ -179,7 +179,7 @@ def main():
     with open(os.path.join(results_dir, 'quick_start_report.json'), 'w') as f:
         json.dump(report, indent=2, fp=f)
 
-    print("✓ Success! To run full version with more parameters:")
+    print("[OK] Success! To run full version with more parameters:")
     print("  python backend/main.py --clients 5 --rounds 10\n")
 
 if __name__ == '__main__':
@@ -189,7 +189,7 @@ if __name__ == '__main__':
         print("\n\n⚠ Training interrupted by user")
         sys.exit(0)
     except Exception as e:
-        logger.error(f"\n❌ Error occurred: {str(e)}")
+        logger.error(f"\n[ERROR] Error occurred: {str(e)}")
         import traceback
         traceback.print_exc()
         sys.exit(1)

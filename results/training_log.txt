@@ -2,26 +2,34 @@
 FEDERATED LEARNING TRAINING LOG
 ============================================================
 
-Generated: 2026-02-06 22:08:56
+Generated: 2026-02-07 10:12:28
 
 ----------------------------------------
 FEDERATED LEARNING RESULTS
 ----------------------------------------
-Total Rounds: 2
-Final Accuracy: 0.6337
-Final Loss: 0.9837
-Best Accuracy: 0.6337
+Total Rounds: 10
+Final Accuracy: 0.7794
+Final Loss: 0.5760
+Best Accuracy: 0.8413
 
 ----------------------------------------
 CENTRALIZED TRAINING RESULTS
 ----------------------------------------
-Total Epochs: 2
-Final Accuracy: 0.9878
-Final Loss: 0.0354
-Best Accuracy: 0.9878
+Total Epochs: 10
+Final Accuracy: 0.9934
+Final Loss: 0.0209
+Best Accuracy: 0.9934
 
 ----------------------------------------
 ROUND-BY-ROUND FEDERATED METRICS
 ----------------------------------------
-Round 1: Acc=0.3052, Loss=2.0805
-Round 2: Acc=0.6337, Loss=0.9837
+Round 1: Acc=0.3012, Loss=2.4371
+Round 2: Acc=0.3355, Loss=2.3079
+Round 3: Acc=0.5814, Loss=1.3660
+Round 4: Acc=0.5595, Loss=1.4733
+Round 5: Acc=0.6628, Loss=1.3211
+Round 6: Acc=0.6714, Loss=0.9590
+Round 7: Acc=0.7634, Loss=0.6512
+Round 8: Acc=0.7574, Loss=0.8759
+Round 9: Acc=0.8413, Loss=0.4491
+Round 10: Acc=0.7794, Loss=0.5760

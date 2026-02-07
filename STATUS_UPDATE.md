@@ -77,7 +77,7 @@ View results from previous runs
 
 ## 📦 What to Send to Your Client
 
-### **Required Files (ZIP everything):**
+### **Files Included in the Repository:**
 ```
 ✅ All backend/ files
 ✅ All frontend/ files
@@ -104,7 +104,7 @@ The application is ready! All issues have been fixed and it now works on any mac
 QUICK START (3 steps):
 1. Install Python 3.8+ from https://www.python.org/downloads/
    (Make sure to check "Add Python to PATH")
-2. Extract the ZIP file
+2. Clone the repository: git clone <repo-url>
 3. Double-click START.bat (Windows) or run: bash start.sh (Mac/Linux)
 
 The test will complete in 3-5 minutes and show results automatically.
@@ -205,7 +205,7 @@ warnings.filterwarnings('ignore', category=UserWarning, module='google.protobuf'
 **A:** "Use the quick test instead: `python quick_start.py` (completes in 3-5 minutes)"
 
 ### Q: "OpenBLAS error"
-**A:** "That's fixed in the latest version. Please extract the new ZIP and run again."
+**A:** "That's fixed in the latest version. Please pull the latest changes and run again."
 
 ### Q: "I see warnings about protobuf"
 **A:** "Those are harmless. The training will complete normally. Results will be correct."
@@ -256,7 +256,7 @@ warnings.filterwarnings('ignore', category=UserWarning, module='google.protobuf'
 Your code is now **production-ready** and will work on **any client machine** with minimal setup.
 
 **Client Experience:**
-1. Download ZIP
+1. Clone the repository
 2. Double-click START.bat
 3. Wait 3-5 minutes
 4. See results!
@@ -275,9 +275,9 @@ Your code is now **production-ready** and will work on **any client machine** wi
    ```
    Should complete in 2-5 min without errors
 
-2. **Create ZIP file** with all updated files
+2. **Push all changes** to the GitHub repository
 
-3. **Send to client** with the email template above
+3. **Share the repo link** with the client using the email template above
 
 4. **Point them to:** `START_HERE.txt` or `CLIENT_INSTRUCTIONS.md`
 

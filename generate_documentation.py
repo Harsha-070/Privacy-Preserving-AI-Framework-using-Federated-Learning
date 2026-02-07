@@ -484,7 +484,7 @@ def create_documentation():
          "The process of showing examples to the AI so it can learn patterns and improve."),
 
         ("Communication Round",
-         "One complete cycle: server sends model → clients train → clients send updates → server combines."),
+         "One complete cycle: server sends model -> clients train -> clients send updates -> server combines."),
 
         ("FedAvg (Federated Averaging)",
          "The algorithm that combines all client updates by taking a weighted average."),

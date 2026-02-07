@@ -47,11 +47,17 @@ You should see something like "Python 3.9.x"
 
 ## 📦 Step 2: Setup Project (One-Time)
 
-1. **Extract the ZIP file** you received to a folder (e.g., Desktop)
+1. **Clone the repository** to a folder (e.g., Desktop):
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/Privacy-Preserving-AI-Framework-using-Federated-Learning.git
+   ```
 
 2. **Open Command Prompt/Terminal** in the project folder:
    - **Windows:** Right-click inside the folder → "Open in Terminal"
    - **Mac/Linux:** Right-click folder → "Open Terminal here"
+   ```bash
+   cd Privacy-Preserving-AI-Framework-using-Federated-Learning
+   ```
 
 3. **Install requirements** (this takes 2-5 minutes):
    ```bash
