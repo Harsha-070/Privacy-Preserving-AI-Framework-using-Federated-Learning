@@ -1,38 +1,38 @@
 {
-    "timestamp": "2026-02-06T01:53:28.361469",
+    "timestamp": "2026-02-06T22:08:56.949705",
     "summary": {
-        "federated_accuracy": 0.4376,
-        "centralized_accuracy": 0.992,
-        "accuracy_retention": 44.11,
-        "accuracy_gap": 0.5544,
+        "federated_accuracy": 0.6337,
+        "centralized_accuracy": 0.9878,
+        "accuracy_retention": 64.15,
+        "accuracy_gap": 0.3541,
         "privacy_preserved": true
     },
     "federated_model": {
-        "final_accuracy": 0.4376,
-        "final_loss": 3.2373,
-        "total_rounds": 10,
-        "training_time_seconds": 719.22,
-        "best_accuracy": 0.4423,
-        "convergence_round": 9,
+        "final_accuracy": 0.6337,
+        "final_loss": 0.9837,
+        "total_rounds": 2,
+        "training_time_seconds": 102.07,
+        "best_accuracy": 0.6337,
+        "convergence_round": 2,
         "privacy": "High (Data stays local)"
     },
     "centralized_model": {
-        "final_accuracy": 0.992,
-        "final_loss": 0.0266,
-        "total_epochs": 10,
-        "training_time_seconds": 400.73,
-        "best_accuracy": 0.9928,
+        "final_accuracy": 0.9878,
+        "final_loss": 0.0354,
+        "total_epochs": 2,
+        "training_time_seconds": 35.0,
+        "best_accuracy": 0.9878,
         "privacy": "None (Data aggregated centrally)"
     },
     "communication": {
-        "total_bytes": 33731360,
-        "total_megabytes": 32.17
+        "total_bytes": 10119408,
+        "total_megabytes": 9.65
     },
     "configuration": {
         "data": {
             "dataset_name": "mnist",
             "data_path": null,
-            "num_clients": 5,
+            "num_clients": 2,
             "distribution": "non-iid",
             "shards_per_client": 2,
             "dirichlet_alpha": 0.5,
@@ -58,10 +58,10 @@
             ]
         },
         "federated": {
-            "num_rounds": 10,
-            "clients_per_round": 1,
-            "local_epochs": 2,
-            "batch_size": 32,
+            "num_rounds": 2,
+            "clients_per_round": 2,
+            "local_epochs": 1,
+            "batch_size": 64,
             "client_learning_rate": 0.01,
             "server_learning_rate": 1.0,
             "client_optimizer": "sgd",

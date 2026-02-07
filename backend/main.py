@@ -1,10 +1,22 @@
 import argparse
-import numpy as np
-import tensorflow as tf
-import time
 import os
 import sys
 import logging
+import warnings
+
+# Fix OpenBLAS memory allocation error
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['OMP_NUM_THREADS'] = '1'
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
+
+# Suppress harmless protobuf version warnings
+warnings.filterwarnings('ignore', category=UserWarning, module='google.protobuf')
+
+import numpy as np
+import tensorflow as tf
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

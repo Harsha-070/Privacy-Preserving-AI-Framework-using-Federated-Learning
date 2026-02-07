@@ -2,13 +2,18 @@
 Data Loading and Preprocessing Module for Federated Learning.
 """
 
+import os
+# Fix OpenBLAS memory allocation error
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['OMP_NUM_THREADS'] = '1'
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
+
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from collections import defaultdict
 from typing import Tuple, List, Dict, Optional
-import os
 import logging
 
 logger = logging.getLogger(__name__)

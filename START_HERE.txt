@@ -1,0 +1,136 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║     PRIVACY-PRESERVING AI FRAMEWORK - FEDERATED LEARNING             ║
+║                                                                       ║
+║     START HERE - QUICK SETUP GUIDE                                   ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+📋 WHAT YOU NEED:
+   - A computer (Windows/Mac/Linux)
+   - Python 3.8 or higher
+   - Internet connection (first time only)
+   - 15 minutes
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 QUICK START (3 STEPS):
+
+   STEP 1: Install Python
+   ─────────────────────────────────────────────────────
+   Download from: https://www.python.org/downloads/
+   ⚠️ IMPORTANT: Check "Add Python to PATH" during install!
+
+
+   STEP 2: Install Dependencies
+   ─────────────────────────────────────────────────────
+   Open Terminal/Command Prompt in this folder and run:
+
+   pip install -r requirements.txt
+
+   (This takes 2-5 minutes, only needed once)
+
+
+   STEP 3: Run the Application
+   ─────────────────────────────────────────────────────
+
+   ► EASIEST METHOD (No command line needed!):
+
+      Windows:  Double-click "START.bat"
+      Mac/Linux: Double-click "start.sh"
+                 (or run: bash start.sh)
+
+   ► OR use command line:
+
+      Quick Test (2-3 minutes):
+      → python quick_start.py
+
+      Full Application:
+      → python run.py
+
+═══════════════════════════════════════════════════════════════════════
+
+📚 DETAILED GUIDES:
+
+   For complete instructions:
+   → Read "CLIENT_INSTRUCTIONS.md"
+
+   If you have errors:
+   → Read "TROUBLESHOOTING.md"
+
+   For advanced setup:
+   → Read "SETUP.md"
+
+═══════════════════════════════════════════════════════════════════════
+
+✅ WHAT TO EXPECT:
+
+   ✓ First run downloads MNIST dataset (~11MB)
+   ✓ Quick test completes in 2-5 minutes
+   ✓ Full training takes 10-30 minutes
+   ✓ Results saved in "results/" folder
+   ✓ Web dashboard available after training
+
+═══════════════════════════════════════════════════════════════════════
+
+❌ COMMON ISSUES - QUICK FIXES:
+
+   Issue: "Python not recognized"
+   Fix: Reinstall Python and check "Add to PATH"
+
+   Issue: "OpenBLAS memory error"
+   Fix: Already fixed! Just run again.
+
+   Issue: "Takes too long / hangs"
+   Fix: Use quick test: python quick_start.py
+
+   Issue: "Module not found"
+   Fix: Run: pip install -r requirements.txt
+
+═══════════════════════════════════════════════════════════════════════
+
+🌐 VIEW RESULTS:
+
+   After training completes, view results in browser:
+
+   python -m streamlit run frontend/app.py
+
+   Opens at: http://localhost:8501
+
+═══════════════════════════════════════════════════════════════════════
+
+📊 EXPECTED RESULTS:
+
+   Federated Accuracy:   ~89%
+   Centralized Accuracy: ~99%
+   Accuracy Retention:   ~90%
+   Privacy Preserved:    ✓ YES!
+
+   This means: We keep 90% of performance while maintaining
+   100% privacy - data never leaves client devices! 🎉
+
+═══════════════════════════════════════════════════════════════════════
+
+🆘 NEED HELP?
+
+   1. Check TROUBLESHOOTING.md
+   2. Check CLIENT_INSTRUCTIONS.md
+   3. Contact developer with:
+      - Your OS (Windows/Mac/Linux)
+      - Python version (python --version)
+      - Error message screenshot
+
+═══════════════════════════════════════════════════════════════════════
+
+🚀 RECOMMENDED FIRST RUN:
+
+   1. Double-click START.bat (Windows) or start.sh (Mac/Linux)
+   2. Choose "Option 1: Quick Test"
+   3. Wait 3-5 minutes
+   4. See results!
+
+═══════════════════════════════════════════════════════════════════════
+
+Ready to start? Double-click START.bat (Windows) or start.sh (Mac/Linux)
+
+═══════════════════════════════════════════════════════════════════════

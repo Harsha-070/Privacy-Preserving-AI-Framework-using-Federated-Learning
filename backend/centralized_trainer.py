@@ -2,10 +2,19 @@
 Centralized Training Module for baseline comparison.
 """
 
+import os
+import warnings
+
+# Fix OpenBLAS and TensorFlow compatibility issues
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+os.environ['OMP_NUM_THREADS'] = '1'
+os.environ['OPENBLAS_NUM_THREADS'] = '1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+warnings.filterwarnings('ignore', category=UserWarning, module='google.protobuf')
+
 import tensorflow as tf
 import numpy as np
 import time
-import os
 from typing import Tuple, Dict, Optional, Callable
 import logging
 

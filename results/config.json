@@ -2,7 +2,7 @@
     "data": {
         "dataset_name": "mnist",
         "data_path": null,
-        "num_clients": 5,
+        "num_clients": 10,
         "distribution": "non-iid",
         "shards_per_client": 2,
         "dirichlet_alpha": 0.5,
@@ -28,9 +28,9 @@
         ]
     },
     "federated": {
-        "num_rounds": 10,
-        "clients_per_round": 5,
-        "local_epochs": 2,
+        "num_rounds": 20,
+        "clients_per_round": 10,
+        "local_epochs": 5,
         "batch_size": 32,
         "client_learning_rate": 0.01,
         "server_learning_rate": 1.0,

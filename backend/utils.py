@@ -3,10 +3,16 @@ Utility functions for visualization, logging, and reporting.
 Generates comparison plots and performance reports.
 """
 
+import os
+import warnings
+
+# Fix matplotlib backend for headless environments
+import matplotlib
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import os
 import json
 import csv
 from typing import Dict, List, Optional, Tuple
